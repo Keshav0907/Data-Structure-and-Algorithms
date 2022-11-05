@@ -12,19 +12,32 @@ class Solution{
     //Function to return the count of number of elements in union of two arrays.
     int doUnion(int a[], int n, int b[], int m)  {
         //code here
-        unordered_map<int,int> mpp;
+        // unordered_map<int,int> mpp;
+        
+        // for(int i=0; i<n; i++) {
+        //     mpp[a[i]]++;
+        // }
+        
+        // for(int i=0; i<m; i++) {
+        //     if(mpp.find(b[i])==mpp.end()) {
+        //         mpp[b[i]]++;
+        //     }
+        // }
+        
+        // return mpp.size();
+        
+        unordered_set<int> s;
+        
         
         for(int i=0; i<n; i++) {
-            mpp[a[i]]++;
+            s.insert(a[i]);
         }
         
         for(int i=0; i<m; i++) {
-            if(mpp.find(b[i])==mpp.end()) {
-                mpp[b[i]]++;
-            }
+            s.insert(b[i]);
         }
         
-        return mpp.size();
+        return s.size();
     }
 };
 
