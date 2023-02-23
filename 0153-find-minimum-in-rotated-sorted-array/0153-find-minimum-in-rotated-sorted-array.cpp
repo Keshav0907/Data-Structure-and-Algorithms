@@ -19,7 +19,7 @@ public:
         
         }
         
-        return nums[end];
+        return nums[start];
         
     }
 };
