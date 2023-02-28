@@ -44,16 +44,16 @@ public:
         int left = maxi;
         int right = sum;
         int ans;
-        while(left < right) {
+        while(left <= right) {
             int mid = left + (right-left)/2;
             if(canShip(weights,days,mid)) {
                 ans = mid;
-                right = mid;
+                right = mid-1;
             } else {
                 left = mid + 1;
             }
         }
         
-        return left;
+        return ans;
     }
 };
