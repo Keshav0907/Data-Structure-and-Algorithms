@@ -14,14 +14,16 @@ public:
                 sum = nums[i];
             }
             
-            if(cnt > k) {
+            
+            
+        }
+        if(cnt > k) {
                 return false;
             }
             
-        }
-            
         
-        return true;        
+        return true;
+        // return cnt==k;
         
     }
     
