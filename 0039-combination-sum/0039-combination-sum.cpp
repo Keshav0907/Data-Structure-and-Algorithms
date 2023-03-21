@@ -11,15 +11,15 @@ public:
             return;
         }
           
-        //vector<int> op1 = op;
-        //vector<int> op2 = op;
+        vector<int> op1 = op;
+        vector<int> op2 = op;
         if(arr[i]<=target)
         {
-        op.push_back(arr[i]);
-        solve(arr,target-arr[i],op,res,i);
-        op.pop_back();
+        op1.push_back(arr[i]);
+        solve(arr,target-arr[i],op1,res,i);
+        // op.pop_back();
         }
-        solve(arr,target,op,res,i+1);
+        solve(arr,target,op2,res,i+1);
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>> res;
