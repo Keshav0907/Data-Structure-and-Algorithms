@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
   public:
   
-  void solve(vector<int> &vec,int k,int index,int &ans) {
+  void solve(vector<int> vec,int k,int index,int &ans) {
       
       if(vec.size()==1) {
           ans = vec[0];
