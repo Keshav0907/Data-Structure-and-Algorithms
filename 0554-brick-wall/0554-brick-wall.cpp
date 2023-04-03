@@ -24,7 +24,6 @@ public:
         }
         
         int maxi = INT_MIN;
-        // mpp[0] = 0;
         mpp[sum] = 0;
         
         for(auto it: mpp) {
