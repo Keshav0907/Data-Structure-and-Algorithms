@@ -10,31 +10,44 @@
  */
 class Solution{
   private:
-    ListNode* getMid(ListNode* head ) {
-        ListNode* slow = head;
-        ListNode* fast = head -> next;
+  
+    ListNode* getMid(ListNode* head) {
         
-        while(fast != NULL && fast-> next != NULL) {
-            fast = fast -> next -> next;
-            slow = slow -> next;
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        
+        while(fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
         }
         
         return slow;
+        
     }
+    
     ListNode* reverse(ListNode* head) {
         
         ListNode* curr = head;
         ListNode* prev = NULL;
         ListNode* next = NULL;
         
-        while(curr != NULL) {
-            next = curr -> next;
-            curr -> next = prev;
+        
+        
+        while(curr!=NULL) {
+            
+            next = curr->next;
+            curr->next = prev;
             prev = curr;
-            curr = next;
+            curr =  next;
+            
+            
         }
+        
         return prev;
+        
+        
     }
+    
   public:
     //Function to check whether the list is palindrome.
     bool isPalindrome(ListNode *head)
