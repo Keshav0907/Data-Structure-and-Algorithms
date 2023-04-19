@@ -12,43 +12,69 @@ class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
          
-        if(head==NULL || k==1) {
-            return head;
-        }
-        ListNode* dummy = new ListNode(0);
-        dummy->next = head;
+//         if(head==NULL || k==1) {
+//             return head;
+//         }
+//         ListNode* dummy = new ListNode(0);
+//         dummy->next = head;
         
+//         ListNode* curr = head;
+//         ListNode* nex = dummy;
+//         ListNode* prev = dummy;
+//         int count = 0;
+//         while(curr!=NULL) {
+//             curr = curr->next;
+//             count++;
+//         }
+         
+//         cout << count;
+//         while(count >= k) {
+           
+//             curr = prev->next;
+//             nex = curr->next;
+//             for(int i=1; i<k; i++) {
+                
+//                 curr->next =  nex->next;
+//                 nex->next = prev->next;
+//                 prev->next = nex;
+//                 nex = curr->next;
+                
+            
+//             }
+        
+//             prev = curr;
+//             count -= k;
+            
+//         }
+        
+        
+        
+//         return dummy->next;
+        
+         ListNode* cursor = head;
+        for(int i = 0; i < k; i++){
+            if(cursor == nullptr) return head;
+            cursor = cursor->next;
+        }
+
+        ListNode* prev = NULL;
         ListNode* curr = head;
-        ListNode* nex = dummy;
-        ListNode* prev = dummy;
-        int count = 0;
-        while(curr!=NULL) {
-            curr = curr->next;
+        ListNode* next = NULL;
+
+        int count=0;
+
+        while(curr != NULL && count < k){
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
             count++;
         }
-         
-        while(count >= k) {
-           
-            curr = prev->next;
-            nex = curr->next;
-            for(int i=1; i<k; i++) {
-                
-                curr->next =  nex->next;
-                nex->next = prev->next;
-                prev->next = nex;
-                nex = curr->next;
-                
-            
-            }
         
-            prev = curr;
-            count -= k;
-            
+        if(next != NULL){
+            head->next = reverseKGroup(next,k);
         }
-        
-        
-        
-        return dummy->next;
+        return prev;
            
         
     }
