@@ -18,11 +18,11 @@ public:
         ListNode* dummy = new ListNode(0);
         dummy->next = head;
         
-        ListNode* curr = dummy;
+        ListNode* curr = head;
         ListNode* nex = dummy;
         ListNode* prev = dummy;
         int count = 0;
-        while(curr->next!=NULL) {
+        while(curr!=NULL) {
             curr = curr->next;
             count++;
         }
