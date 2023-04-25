@@ -1,43 +1,42 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
+        
         stack<int> s;
-        unordered_map<int, int> m;
-        for (int n : nums) {
-            while (s.size() && s.top() < n) {
-                m[s.top()] = n;
+        vector<int> ans;
+        vector<int> res;
+        unordered_map<int,int> mpp;
+        
+        for(int i=nums.size()-1; i>=0; i--) {
+            
+            while(!s.empty() && s.top()<nums[i]) {
                 s.pop();
             }
-            s.push(n);
+            
+            if(s.empty()) {
+                ans.push_back(-1);
+            } else { 
+                
+            ans.push_back(s.top());
+                
+            }
+            
+            s.push(nums[i]);
+            
         }
-        vector<int> ans;
-        for (int n : findNums) ans.push_back(m.count(n) ? m[n] : -1);
-        return ans;
+        
+        reverse(ans.begin(),ans.end());
+        
+        for(int i=0; i<nums.size(); i++) {
+            mpp[nums[i]] = ans[i];
+        }
+        
+        for(auto x : findNums) {
+            res.push_back(mpp[x]);
+        }
+        
+        return res;
+        
     }
 };
 
-        // s.push(nums2[nums2.size()-1]);
-        
-//         for(int i=nums2.size()-1; i>=0; i--) {
-//             if(s.find(nums2[i])!=s.end()) {
-                
-//                 if(!st.empty()) {
-                    
-//                     if(st.top() > nums2[i]) {
-//                         ans.push_back(st.top());
-//                     } else {
-//                         ans.push_back(-1);
-//                         st.push(nums2[i]);
-//                     }
-                    
-                    
-//                 } else {
-//                     ans.push_back(-1);
-                
-//                 }
-                
-//             }
-//                 st.push(nums2[i]);
-//         }
-        
-        // reverse(ans.begin(),ans.end());
