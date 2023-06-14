@@ -40,27 +40,27 @@ public:
         
         
     }
+    
+    bool helper(TreeNode* left,TreeNode* right) {
+        
+        if(left==NULL || right==NULL) return left==right;
+        if(left->val != right->val) return false;
+        
+        return helper(left->left,right->right) && helper(left->right,right->left) ;
+        
+    }
     bool isSymmetric(TreeNode* root) {
          
        
         
-        traversal1(root->left);
-        traversal2(root->right);
+//         traversal1(root->left);
+//         traversal2(root->right);
         
-        for(auto x : vec) {
-            cout << x << " ";
-        }
+//         return vec==vec2;
         
-        cout << endl;
-        
-        for(auto x : vec2) {
-            cout << x << " ";
-            
-        }
-        cout << endl;
-        return vec==vec2;
-        
- 
+        return root==NULL || helper(root->left,root->right);
+         
+       
         
     }
 };
