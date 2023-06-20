@@ -11,21 +11,49 @@
  */
 class Solution {
 public:
-    
-    vector<int> ans;
-    
-    void traverse(TreeNode* root) {
-        if(root==NULL)  return;
-        
-        traverse(root->left);
-        ans.push_back(root->val);
-        traverse(root->right);
-        
-    }
-    
     int kthSmallest(TreeNode* root, int k) {
-       traverse(root);
-       return ans[k-1];
-        
+        int result = 0;
+        inorder(root, k, result);
+        return result;
+    }
+private:
+    void inorder(TreeNode* root, int& k, int& result) {
+        if (root == NULL) {
+            return;
+        }
+        inorder(root->left, k, result);
+        k--;
+        if (k == 0) {
+            result = root->val;
+            return;
+        }
+        inorder(root->right, k, result);
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
