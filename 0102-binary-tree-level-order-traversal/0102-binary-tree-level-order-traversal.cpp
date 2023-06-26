@@ -19,7 +19,7 @@ public:
         queue<TreeNode*> q;
         q.push(root);
         q.push(NULL);
-        int i=0;
+        // int i=0;
         vector<int> ans;
         while(!q.empty()) {
             
@@ -29,7 +29,7 @@ public:
             if(temp==NULL) {    
                 vec.push_back(ans);
                 ans.clear();
-                i++;
+                // i++;
                 if(!q.empty()) {
                     q.push(NULL);
                 }
@@ -38,8 +38,7 @@ public:
             if(temp->left) q.push(temp->left);
             if(temp->right) q.push(temp->right);
             }
-        
-            
+
         }
         
         return vec;
