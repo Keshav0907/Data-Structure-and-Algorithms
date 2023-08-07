@@ -42,11 +42,25 @@ public:
         
     }
     
+    int height(TreeNode* root,int &diameter) {
+        
+        if(root==NULL) return 0;
+        
+        int leftHeight = height(root->left,diameter);
+        int rightHeight = height(root->right,diameter);
+        diameter = max(leftHeight+rightHeight,diameter);
+        return  1 + max(leftHeight,rightHeight);
+        
+    }
+    
     
     int diameterOfBinaryTree(TreeNode* root) {
         
-        HDpair ans = dia(root);
-        return ans.diameter;
+        // HDpair ans = dia(root);
+        // return ans.diameter;
+        int diameter = 0;
+        height(root,diameter);
+        return diameter;
         
     }
 };
