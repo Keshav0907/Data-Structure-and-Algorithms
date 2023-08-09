@@ -108,8 +108,35 @@ class Solution
     {
         //Your code here\
        
+    //   vector<int> ans;
+    //   map<int,int> mpp;
+    //   queue<pair<Node*,int>> q;
+    //   q.push({root,0});
+      
+    //   while(!q.empty()) {
+          
+    //       Node* temp = q.front().first;
+    //       int level = q.front().second;
+    //       q.pop();
+          
+    //       if(mpp.find(level)==mpp.end()) mpp[level] = temp->data;
+          
+    //       if(temp->left) q.push({temp->left,level-1});
+    //       if(temp->right) q.push({temp->right,level+1});
+    //   }
+      
+    //   for(auto it : mpp) {
+          
+    //       int ele = it.second;
+    //       ans.push_back(ele);
+          
+    //   }
+      
+    //   return ans;
+      
+      
       vector<int> ans;
-      map<int,int> mpp;
+      map<int,vector<int>> mpp;
       queue<pair<Node*,int>> q;
       q.push({root,0});
       
@@ -119,7 +146,7 @@ class Solution
           int level = q.front().second;
           q.pop();
           
-          if(mpp.find(level)==mpp.end()) mpp[level] = temp->data;
+          mpp[level].push_back(temp->data);
           
           if(temp->left) q.push({temp->left,level-1});
           if(temp->right) q.push({temp->right,level+1});
@@ -127,8 +154,8 @@ class Solution
       
       for(auto it : mpp) {
           
-          int ele = it.second;
-          ans.push_back(ele);
+          vector<int> line = it.second;
+          ans.push_back(line[0]);
           
       }
       
