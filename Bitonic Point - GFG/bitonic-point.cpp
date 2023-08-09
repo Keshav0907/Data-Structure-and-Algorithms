@@ -13,15 +13,30 @@ public:
 	    // code here
 	    int ans = INT_MIN;
 	    
-	    for(int i = 0; i<n-1; i++) {
-	        if(arr[i] > arr[i+1]) {
-	            ans = arr[i];
-	            break;
-	       }
-	    }
+	   // for(int i = 0; i<n-1; i++) {
+	   //     if(arr[i] > arr[i+1]) {
+	   //         ans = arr[i];
+	   //         break;
+	   //    }
+	   // }
+	   
+	   int low = 0;
+	   int high = n-1;
+	   
+	   while(low < high) {
+	       
+	       int mid = low + (high-low)/2;
+	       if(arr[mid] > arr[mid+1]) {
+	           ans = arr[mid];
+	           high = mid;
+	       } else if(arr[mid] < arr[mid+1]) {
+	           low = mid+1;
+	       
+	   }
+	   }
 	    
-	    if(ans==INT_MIN) ans = arr[n-1];
-	    return ans;
+	   // if(ans==INT_MIN) ans = arr[n-1];
+	    return arr[high];
 	}
 };
 
