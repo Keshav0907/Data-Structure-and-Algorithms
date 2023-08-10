@@ -17,13 +17,14 @@ public:
             
             
         }
-        if(cnt > k) {
-                return false;
-            }
+//         if(cnt > k) {
+//                 return false;
+//             }
             
         
-        return true;
+        // return true;
         // return cnt==k;
+        return cnt<=k;
         
     }
     
