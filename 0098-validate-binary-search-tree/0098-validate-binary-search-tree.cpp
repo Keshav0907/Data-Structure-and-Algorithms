@@ -11,39 +11,18 @@
  */
 class Solution {
 public:
-//     bool isValidBST(TreeNode* root) {
+   bool helper(TreeNode* root,long minValue,long maxValue) {
         
-//         if(root==NULL) return false;
-//         bool left = isValidBST(root->left);
-//         bool right = isValidBST(root->left);
+        if(root==NULL) return true;
         
-//         if(root->left!=NULL and root->right!=NULL) {
-            
-//             if(root->left->val <root->val and root->right->val > root->val) {
-//                 return true;
-//             }
-            
-//         } else if(root->left!=NULL) {
-            
-//             return root->left->val < root->val;
-            
-//         } else if(root->right!=NULL){
-//             root->right->val > root->val;
-//         }   
-//         return left and right;
+        if(root->val <= minValue  || root->val >= maxValue) return false;
         
+        return helper(root->left,minValue,root->val) && helper(root->right,root->val,maxValue);
         
-//     }
+    }
     
-       bool isValidBST(TreeNode* root) {
-        TreeNode* prev = NULL;
-        return validate(root, prev);
+     bool isValidBST(TreeNode* root) {
+       return helper(root,LONG_MIN,LONG_MAX);
     }
-    bool validate(TreeNode* node, TreeNode* &prev) {
-        if (node == NULL) return true;
-        if (!validate(node->left, prev)) return false;
-        if (prev != NULL && prev->val >= node->val) return false;
-        prev = node;
-        return validate(node->right, prev);
-    }
+
 };
