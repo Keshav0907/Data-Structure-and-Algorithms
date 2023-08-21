@@ -5,8 +5,8 @@ public:
         set<vector<int>> s;
         vector<vector<int>> output;
 
-        for (int i = 0; i <= nums.size(); i++){
-            for(int j = i+1; j <= nums.size(); j++){
+        for (int i = 0; i < nums.size(); i++){
+            for(int j = i+1; j <nums.size(); j++){
                 int k = j + 1;
                 int l = nums.size() - 1;
                 while (k < l) {
