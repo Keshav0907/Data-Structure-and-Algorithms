@@ -8,14 +8,13 @@ public:
         return {};
     }
 
-    vector<int> ans(n, 0);
-    int index = 0;
-    while (target > 0)
-    {
-        ans[index] += 1;
-        index++;
-        index %= n;
-        target--;
+    vector<int> ans;
+    while(target) {
+        int dice = min(6,target-n+1);
+        ans.push_back(dice);
+        n--;
+        target -= dice;
+        
     }
     return ans;
 }
