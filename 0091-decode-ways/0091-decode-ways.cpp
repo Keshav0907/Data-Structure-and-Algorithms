@@ -9,7 +9,7 @@ public:
         if(dp[i]!=-1) return dp[i];
         if(s[i]=='1' || (s[i]=='2' && (s[i+1]>=48 && s[i+1]<=54)))
             return dp[i] = solve(s,i+1,dp)+solve(s,i+2,dp);
-        else
+        // else
             return dp[i] = solve(s,i+1,dp);
         
     }
