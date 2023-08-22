@@ -7,7 +7,7 @@ public:
         
         
         if(n<=1) return 0;
-        if(n==2) return min(cost[0],cost[1]);
+        // if(n==2) return min(cost[0],cost[1]);
         
         return dp[n] = min(cost[n-1]+minCost(cost,n-1,dp),cost[n-2] + minCost(cost,n-2,dp));
         
