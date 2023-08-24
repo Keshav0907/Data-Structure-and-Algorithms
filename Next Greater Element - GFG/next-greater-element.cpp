@@ -7,33 +7,39 @@ using namespace std;
 class Solution
 {
     public:
-     vector<long long> nextLargerElement(vector<long long> a, int n){    
-        stack<long long> s;
+    //Function to find the next greater element for each element of the array.
+    vector<long long> nextLargerElement(vector<long long> arr, int n){
+        // Your code here
+        stack<long long> st;
         vector<long long> ans;
-      
         
-        for(int i=n-1;i>=0;i--){
+        for(int i=n-1; i>=0; i--) {
             
-            while(!s.empty() && a[i]>=s.top()){
-                s.pop();
+            if(st.empty()) {
+                ans.push_back(-1);
+            } else {
+            
+            if(st.top() > arr[i]) {
+                ans.push_back(st.top());
+            } else {
+                while(!st.empty() && st.top()<=arr[i]) {
+                st.pop();
+            }
+            if(st.empty()) {
+              ans.push_back(-1);  
+            } else {
+                ans.push_back(st.top());
             }
             
-            if(s.empty())
-                ans.push_back(-1);
-            else
-                ans.push_back(s.top());
-                
-            s.push(a[i]);
+            }
+            }
             
+            st.push(arr[i]);
         }
         
         reverse(ans.begin(),ans.end());
-        
         return ans;
     }
-    
-    
-    
 };
 
 //{ Driver Code Starts.
