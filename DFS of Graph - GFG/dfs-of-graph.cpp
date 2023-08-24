@@ -7,29 +7,34 @@ class Solution {
   public:
     // Function to return a list containing the DFS traversal of the graph.
     
-    void dfs(int node,vector<int> &visited,vector<int> adj[],vector<int> &ans) {
+    void dfs(int node,vector<int> edges[],vector<int> &ans,vector<int> &visited) {
+    
+    visited[node]=true;
+    ans.push_back(node);
+    for(auto nbr : edges[node]) {
         
-        visited[node] = true;
-        ans.push_back(node);
-        
-        for(auto nbr : adj[node]) {
-            if(!visited[nbr]) {
-                dfs(nbr,visited,adj,ans);
-            }
+        if(!visited[nbr]) {
+            dfs(nbr,edges,ans,visited);
         }
-        
-        
+    }
+
+    return;
     }
     
+    
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
-        // Cod here
-        vector<int> ans;
-        vector<int> visited(V,0);
-        
-        dfs(0,visited,adj,ans);
-        
-        return ans;
+      
+    vector<int> ans;
+    vector<int> visited(V,0);
+    for(int i=0; i<V; i++) {
+     if(!visited[i]) {
+         dfs(i,adj,ans,visited);
+     }
     }
+
+    return ans;
+    }
+    
 };
 
 //{ Driver Code Starts.
