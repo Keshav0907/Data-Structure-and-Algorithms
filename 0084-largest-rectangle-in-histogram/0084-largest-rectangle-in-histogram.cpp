@@ -1,63 +1,92 @@
 class Solution {
 public:
-    
-    vector<int> nextSmallLeft(vector<int> heights) {
+     
+    vector<int> nextSmallLeft(vector<int> &heights) {
         
         vector<int> ans;
-        stack<pair<int,int>> s;
+        stack<pair<int,int>> st;
         
         for(int i=0; i<heights.size(); i++) {
             
-            while(s.size() > 0 && s.top().first>=heights[i]) {
-                s.pop();   
-            }
-            
-            if(s.size()==0) {
+            if(st.size()==0) {
                 ans.push_back(-1);
             } else {
-                ans.push_back(s.top().second);
+                
+                if(st.top().first < heights[i]) {
+                    ans.push_back(st.top().second);
+                } else {
+                    
+                    while(st.size() > 0 && st.top().first >= heights[i]) {
+                        
+                        st.pop();
+                        
+                    }
+                    
+                    if(st.size()==0) {
+                        ans.push_back(-1);
+                    } else {
+                        ans.push_back(st.top().second);
+                    }
+                    
+                }
+                
+                
             }
             
-            s.push({heights[i],i});
+            
+           st.push({heights[i],i}); 
             
         }
-       
-        return ans;
-        
-        
+         return ans;
     }
     
-    vector<int> nextSmalleRight(vector<int> heights) {
+        vector<int> nextSmallRight(vector<int> &heights) {
         
         vector<int> ans;
-        stack<pair<int,int>> s;
-        int n = heights.size();
-        for(int i=n-1; i>=0; i--) {
+        stack<pair<int,int>> st;
+        
+        for(int i=heights.size()-1; i>=0; i--) {
             
-            while(s.size() > 0 && s.top().first>=heights[i]) {
-                s.pop();   
-            }
-            
-            if(s.size()==0) {
-                ans.push_back(n);
+            if(st.size()==0) {
+                ans.push_back(heights.size());
             } else {
-                ans.push_back(s.top().second);
+                
+                if(st.top().first < heights[i]) {
+                    ans.push_back(st.top().second);
+                } else {
+                    
+                    while(st.size() > 0 && st.top().first >= heights[i]) {
+                        
+                        st.pop();
+                        
+                    }
+                    
+                    if(st.size()==0) {
+                        ans.push_back(heights.size());
+                    } else {
+                        ans.push_back(st.top().second);
+                    }
+                    
+                }
+                
+                
             }
             
-            s.push({heights[i],i});
             
+           st.push({heights[i],i}); 
             
         }
-        reverse(ans.begin(),ans.end());
-    
-        return ans;
-        
+            
+            reverse(ans.begin(),ans.end());
+            return ans;
+         
     }
+    
     
     
     int largestRectangleArea(vector<int>& heights) {
         vector<int> left = nextSmallLeft(heights);
-        vector<int> right = nextSmalleRight(heights);
+        vector<int> right = nextSmallRight(heights);
         vector<int> width(heights.size(),0);
         for(int i=0; i<left.size(); i++) {
             
