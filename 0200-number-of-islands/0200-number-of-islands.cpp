@@ -1,37 +1,42 @@
 class Solution {
 private:
-    void bfs(int row,int col,vector<vector<int>>& vis,vector<vector<char>>& grid){
-        queue<pair<int,int>> q;
 
-        int n = grid.size();
-        int m = grid[0].size();
-
-        q.push({row,col});
-        vis[row][col] =1;
-
-        int delrow[] = {0,-1,0,1};
-        int delcol[] = {1,0,-1,0};
-
-        while(!q.empty()){           
-            
-            int row = q.front().first;
-            int col = q.front().second;
-            q.pop();
-
-            for(int i=0;i<4;i++){
-                int nrow = row + delrow[i];
-                int ncol = col + delcol[i];
-
-                if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && !vis[nrow][ncol] 
-                    && grid[nrow][ncol] =='1'){
-                    q.push({nrow,ncol});
-                    vis[nrow][ncol] =1;
-                }
-            }
-
-
+    void bfs(int row,int col,vector<vector<int>> &visited,vector<vector<char>> &grid) {
+        
+        if(row<0 || row>grid.size() || col < 0 || col > grid[0].size() || visited[row][col]==1) {
+            return;
         }
+        
+        queue<pair<int,int>> q;
+        q.push({row,col});
+        visited[row][col] = 1;
+        while(!q.empty()) {
+            
+            int r = q.front().first;
+            int c = q.front().second;
+            q.pop();
+            int dx[] = {1,0,-1,0};
+            int dy[] = {0,1,0,-1};
+            
+            for(int i=0; i<4; i++) {
+                
+                int nr = r + dx[i];
+                int nc = c + dy[i];
+                
+                if(nr < grid.size() && nr>=0 && nc<grid[0].size() && nc>=0 && visited[nr][nc]!=1 && grid[nr][nc]!='0') {
+                    q.push({nr,nc});
+                    visited[nr][nc]=1;
+                }
+                
+                
+            }
+            
+        }
+        
+        return;
+        
     }
+    
 public:
     int numIslands(vector<vector<char>>& grid) {
         
