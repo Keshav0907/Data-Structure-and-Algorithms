@@ -3,42 +3,36 @@ public:
     int calPoints(vector<string>& operations) {
         
         
-        stack<int> s;
+       stack<int> s;
         
-        for(auto str : operations) {
+        for(auto ch : operations) {
             
-            if(str=="D") {
-                int score = s.top();
-                s.push(2*score);
-            } else if(str=="+") {
-                int score1 = s.top();
-                s.pop();
-                int score2 = s.top();
-                s.pop();
-                s.push(score2);
-                s.push(score1);
-                s.push(score1+score2);
-            } else if(str=="C") {
-                s.pop();
-            } else {
-                s.push(stoi(str));
-            }
-                    
-            
+    
+                if(ch=="+") {
+                    int first = s.top();
+                    s.pop();
+                    int second = s.top();
+                    s.pop();
+                    s.push(second);
+                    s.push(first);
+                    s.push(first+second);
+                } else if(ch=="C") {
+                    s.pop();
+                } else if(ch=="D") {
+                      s.push(2*s.top()); 
+                }else {
+                   s.push(stoi(ch)); 
+                }
+                
+
         }
         
-        int ans = 0;
+        int sum = 0;
         while(!s.empty()) {
             cout << s.top() <<" ";
-            ans += s.top();
+            sum += s.top();
             s.pop();
         }
-        
-        
-        return ans;
-        
-        
-        
-        
+       return sum; 
     }
 };
