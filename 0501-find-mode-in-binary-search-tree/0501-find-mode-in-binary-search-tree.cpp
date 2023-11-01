@@ -12,31 +12,38 @@
 class Solution {
 public:
     
-    void inOrder(TreeNode* root,unordered_map<int,int> &mpp) {
+    vector<int> result;
+    int currNum = 0;
+    int currFreq = 0;
+    int maxFreq = 0;
+    
+    void inOrder(TreeNode* root) {
         
         if(root==NULL) return;
+        inOrder(root->left);
+        if(root->val==currNum) {
+            currFreq++;
+        } else {
+            currNum = root->val;
+            currFreq = 1;
+        }
         
-        inOrder(root->left,mpp);
-        mpp[root->val]++;
-        inOrder(root->right,mpp);
+        if(currFreq > maxFreq) {
+            result = {};
+            maxFreq = currFreq;
+        }
+        
+        if(currFreq==maxFreq) {
+            result.push_back(currNum);
+        }
+        inOrder(root->right);
         
     }
     
     vector<int> findMode(TreeNode* root) {
-        unordered_map<int,int> mpp;
-        vector<int> vec;
-        int maximum = 0;
-        inOrder(root,mpp);
-        
-        for(auto it: mpp) {
-            maximum = max(maximum,it.second);
-        }
-        
-        for(auto it : mpp) {
-            if(it.second==maximum) vec.push_back(it.first);
-        }
-        
-        return vec;
+     
+        inOrder(root);
+        return result;
         
     }
 };
